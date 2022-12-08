@@ -4,10 +4,10 @@
   </head>
 
   <body>
-    <font color="red">${errorMessage}</font>
+    ADD Todo Page for ${name}
+
     <form method="post">
-      User ID : <input type="text" name="user_id" /> Password :
-      <input type="password" name="password" />
+      Description : <input name="desc" type="text" />
       <input type="submit" />
     </form>
   </body>

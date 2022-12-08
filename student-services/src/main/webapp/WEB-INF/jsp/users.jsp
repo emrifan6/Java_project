@@ -4,8 +4,7 @@
   </head>
 
   <body>
-    Here are the list of ${name}'s todos: ${todos}.
+    Here are the list of ${name}'s todos: ${users}.
     <BR />
-    <a href="/add-todo">Add a Todo</a>
   </body>
 </html>
