@@ -4,11 +4,16 @@
   </head>
 
   <body>
-    <font color="red">${errorMessage}</font>
+    <font color="red">${message}</font>
     <form method="post">
-      User ID : <input type="text" name="user_id" /> Password :
+      <label for="user_id">user_id:</label>
+      <input type="user_id" name="user_id" />
+      <br /><br />
+      <label for="password">password:</label>
       <input type="password" name="password" />
-      <input type="submit" />
+      <br /><br />
+      <button type="submit">Login</button>
     </form>
+   <a href="/register">Register</a></span>
   </body>
 </html>

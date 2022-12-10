@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import web.model.entities.Password;
 import web.model.entities.User;
+import web.service.impl.PasswordServiceImpl;
+import web.service.impl.UserServiceImpl;
 
 @Service
 public class LoginService {
@@ -66,6 +68,11 @@ public class LoginService {
     public List<User> ListUser() {
         List<User> users = userServiceImpl.listAllUser();
         return users;
+    }
+
+    public List<Password> ListPassword() {
+        List<Password> password = passwordServiceImpl.listAllPassword();
+        return password;
     }
 
 }

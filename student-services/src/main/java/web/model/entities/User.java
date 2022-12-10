@@ -25,6 +25,7 @@ public class User {
 
     private String email;
 
+    @Column(unique = true)
     private String userid;
 
     private String nomorkartu;

@@ -85,3 +85,28 @@
 
 
 System.out.println(validation.get(0).getUser_id());
+
+
+System.out.println("user_validation");
+System.out.println(user_validation);
+System.out.println(user_validation.get(0));
+System.out.println(user_validation.toArray());
+boolean check_user = user_validation.isEmpty();
+System.out.println(check_user);
+
+user_validation
+[null]
+null
+[Ljava.lang.Object;@62bb7557
+false
+InsertUser
+
+user_validation
+[userData{id=16, user_id='john32', email='john@email.com', nomor_kartu='44095', nomor_hp='081225079412', created_date=2022-12-09 14:33:10.0, modified_date=null, status_user_id=true}]
+userData{id=16, user_id='john32', email='john@email.com', nomor_kartu='44095', nomor_hp='081225079412', created_date=2022-12-09 14:33:10.0, modified_date=null, status_user_id=true}
+[Ljava.lang.Object;@7fa83893
+false
+InsertUser
+
+        System.out.println("*********************************************");
+        System.out.println(user_id + ", " + email + ", " + password + ", " + nomor_kartu + ", " + nomor_hp);

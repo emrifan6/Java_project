@@ -1,13 +1,8 @@
 package web.model.entities;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,4 +35,16 @@ public class Password {
     @Column(nullable = true)
     private java.sql.Timestamp lastlogindate;
 
+    @Override
+    public String toString() {
+        return "userData{" +
+                "userid=" + userid +
+                ", password='" + password + '\'' +
+                ", createddate='" + createddate + '\'' +
+                ", updateddate='" + updateddate + '\'' +
+                ", islock='" + islock + '\'' +
+                ", retry=" + retry +
+                ", lastlogindate=" + lastlogindate +
+                '}';
+    }
 }
