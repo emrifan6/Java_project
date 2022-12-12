@@ -29,7 +29,8 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String LoginValidation(ModelMap model, @RequestParam String user_id, @RequestParam String password) {
+    public String LoginValidation(ModelMap model, @RequestParam String user_id,
+            @RequestParam String password) {
         /*
          * Login Validate Code
          * 0 = user_id not found

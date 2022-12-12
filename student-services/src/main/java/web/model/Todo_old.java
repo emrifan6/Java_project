@@ -2,14 +2,14 @@ package web.model;
 
 import java.util.Date;
 
-public class Todo {
+public class Todo_old {
     private int id;
     private String user;
     private String desc;
     private Date targetDate;
     private boolean isDone;
 
-    public Todo(int id, String user, String desc, Date targetDate,
+    public Todo_old(int id, String user, String desc, Date targetDate,
             boolean isDone) {
         super();
         this.id = id;
@@ -78,7 +78,7 @@ public class Todo {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Todo other = (Todo) obj;
+        Todo_old other = (Todo_old) obj;
         if (id != other.id) {
             return false;
         }

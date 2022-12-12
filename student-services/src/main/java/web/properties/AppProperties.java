@@ -16,5 +16,6 @@ public class AppProperties {
     private String error_user_locked;
     private String succes_registration;
     private String error_already_registered;
+    private int max_wrong_password;
 
 }

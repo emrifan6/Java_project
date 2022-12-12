@@ -26,14 +26,16 @@ public class RegisterController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String RegisterValidation(ModelMap model, @RequestParam String user_id, @RequestParam String email,
-            @RequestParam String password, @RequestParam String nomor_kartu, @RequestParam String nomor_hp) {
+            @RequestParam String password, @RequestParam String nomor_kartu,
+            @RequestParam String nomor_hp) {
         /*
          * Register Validate Code
          * 0 = fail
          * 1 = user_id already in users table
          * 2 = succes registration
          */
-        int validate_code = registerService.Registration(user_id, email, password, nomor_kartu, nomor_hp);
+        int validate_code = registerService.Registration(user_id, email, password,
+                nomor_kartu, nomor_hp);
         System.out.println("validate_code = " + validate_code);
         if (validate_code == 1) {
             model.put("message", myAppProperties.getError_already_registered());

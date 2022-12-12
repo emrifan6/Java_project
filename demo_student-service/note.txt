@@ -1,0 +1,112 @@
+  // tabel user (id, email, user_id, nomor_kartu, nomor_hp, created_date,
+// modified_date, statususer_id)
+
+// tabel password (user_id, password, created_date, updated_date, is_lock,
+// retry,
+// last_login_date)
+
+// pesan login gagal : login gagal, pastikan user_id dan Password yang diinput
+// benar
+// kode misal.101=user tidak val
+// kode user_id benar dan password salah = 102
+// kalau isLock = 1, pesan = user_id anda terkunci, silahkan registrasi ulang
+// islock = default = 0 (jika 1 berarti terkunci)
+// setiap user_id benar, update retry
+// koneksi ke database menggunakan framework hibernet
+// untuk error mesage dimasukkan kedalam file properties
+
+//
+
+   public int ValidateLogin(String user_id, String password) {
+        /*
+         * Login Validate Code
+         * 0 = user_id not found
+         * 1 = user_id found, wrong password
+         * 2 = user_id found, user is lock
+         * 3 = user_id found, correct password
+         */
+        int validate_code = 0;
+
+        System.out.println("********************************");
+        System.out.println(user_id);
+        System.out.println(password);
+        List<User> user_validation = userServiceImpl.FindByUserId(user_id);
+        System.out.println("********************************");
+        System.out.println("user_validation = " + user_validation);
+        System.out.println("user_validation.isEmpty() = " + user_validation.isEmpty());
+        System.out.println("user_validation.getClass().getName() = " + user_validation.getClass().getName());
+
+        if (user_validation.isEmpty()) {
+            return validate_code;
+        }
+
+        validate_code = 1;
+        System.out.println("check password " + user_id + password);
+        List<Password> password_validation = passwordServiceImpl.FindByUserId(user_id);
+        System.out.println("********************************");
+        System.out.println("password_validation = " + password_validation);
+        System.out.println("password.isEmpty() = " + password_validation.isEmpty());
+        System.out.println("password.getName() = " + password_validation.getClass().getName());
+        System.out.println(password);
+        System.out.println(password_validation.get(0).getPassword());
+        String password_from_db = password_validation.get(0).getPassword().toString();
+
+        if (!password.equals(password_from_db)) {
+            System.out.println("password not valid");
+            int retry = password_validation.get(0).getRetry() + 1;
+            if (retry > 3) {
+                validate_code = 2;
+                passwordServiceImpl.UpdateIslock(true, user_id);
+                return validate_code;
+            }
+            passwordServiceImpl.UpdateRetry(retry, user_id);
+            return validate_code;
+        }
+
+        validate_code = 3;
+        System.out.println("password is valid");
+        // Reset retry
+        passwordServiceImpl.UpdateRetry(0, user_id);
+        return validate_code;
+    }
+  
+  
+  
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String ListUser(ModelMap model) {
+        List<User> users = loginService.ListUser();
+        System.out.println("********************************");
+        System.out.println(users);
+        System.out.println(users.get(0).getEmail());
+        System.out.println(users.getClass().getName());
+        model.put("users", users);
+        return "users";
+    }
+
+
+System.out.println(validation.get(0).getUser_id());
+
+
+System.out.println("user_validation");
+System.out.println(user_validation);
+System.out.println(user_validation.get(0));
+System.out.println(user_validation.toArray());
+boolean check_user = user_validation.isEmpty();
+System.out.println(check_user);
+
+user_validation
+[null]
+null
+[Ljava.lang.Object;@62bb7557
+false
+InsertUser
+
+user_validation
+[userData{id=16, user_id='john32', email='john@email.com', nomor_kartu='44095', nomor_hp='081225079412', created_date=2022-12-09 14:33:10.0, modified_date=null, status_user_id=true}]
+userData{id=16, user_id='john32', email='john@email.com', nomor_kartu='44095', nomor_hp='081225079412', created_date=2022-12-09 14:33:10.0, modified_date=null, status_user_id=true}
+[Ljava.lang.Object;@7fa83893
+false
+InsertUser
+
+        System.out.println("*********************************************");
+        System.out.println(user_id + ", " + email + ", " + password + ", " + nomor_kartu + ", " + nomor_hp);

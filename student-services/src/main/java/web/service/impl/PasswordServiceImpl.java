@@ -3,6 +3,7 @@ package web.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.model.entities.Password;
+import web.model.entities.User;
 import web.repos.PasswordRepository;
 
 import java.sql.Timestamp;
@@ -20,35 +21,77 @@ public class PasswordServiceImpl {
         return (List<Password>) passwordRepository.findAll();
     }
 
-    public List<Password> FindByUserId(String user_id) {
-        List<Password> data = new ArrayList<Password>();
-        data.add(passwordRepository.findByUserid(user_id));
+    public Password FindByUserId(User user_id) {
+        System.out.println("FindByUserId");
+        Password data = passwordRepository.findByUserid(user_id);
+        System.out.println("FindByUserId FINISH");
         return data;
     }
 
-    public void UpdateRetry(int retry, String user_id) {
+    public void UpdateRetry(int retry, User user_id) {
         Password password = passwordRepository.findByUserid(user_id);
         password.setRetry(retry);
         passwordRepository.save(password);
     }
 
-    public void UpdateIslock(boolean status, String user_id) {
+    public boolean UpdateLastLogin(User user_id) {
         Password password = passwordRepository.findByUserid(user_id);
-        password.setIslock(status);
-        passwordRepository.save(password);
+        Date date = new Date();
+        Timestamp date_now = new Timestamp(date.getTime());
+        password.setLastlogindate(date_now);
+        password = passwordRepository.save(password);
+        if (password.getLastlogindate() == null) {
+            return false;
+        }
+        return true;
     }
 
-    public void InsertPassword(String user_id, String password) {
+    public boolean UpdateIslock(boolean status, User user_id) {
+        Password password = passwordRepository.findByUserid(user_id);
+        if (password == null) {
+            return false;
+        }
+        password.setIslock(status);
+        Password output = new Password();
+        try {
+            output = passwordRepository.save(password);
+        } catch (Exception e) {
+            System.out.println("Exception = " + e);
+            return false;
+        }
+        if (output.getPassword().isEmpty()) {
+            return false;
+        }
+        System.out.println("Succes UPDATE data Islock from passwords table");
+        return true;
+    }
+
+    public boolean InsertPassword(User user_id, String password) {
         Date date = new Date();
         Timestamp createddate = new Timestamp(date.getTime());
-        Password passMod = new Password(user_id, password, createddate, null, false, 0, null);
-        passwordRepository.save(passMod);
+        Password passMod = new Password(null, user_id, password, createddate, null,
+                false, 0, null);
+        Password output = new Password();
+        try {
+            output = passwordRepository.save(passMod);
+        } catch (Exception e) {
+            return false;
+        }
+        if (output.getPassword().isEmpty()) {
+            return false;
+        }
+        System.out.println("Succes INSERT data to passwords table");
+        return true;
     }
 
-    public void DetelePassword(String user_id) {
-        System.out.print("*******************************");
-        System.out.print("DetelePassword = " + user_id);
+    public boolean DetelePassword(User user_id) {
         Password password = passwordRepository.findByUserid(user_id);
-        passwordRepository.delete(password);
+        try {
+            passwordRepository.delete(password);
+        } catch (Exception e) {
+            return false;
+        }
+        System.out.println("Succes DELETE data from passwords table");
+        return true;
     }
 }

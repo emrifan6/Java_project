@@ -1,11 +1,13 @@
 package web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.model.entities.User;
+import web.repos.UserRepository;
 import web.service.impl.PasswordServiceImpl;
 import web.service.impl.UserServiceImpl;
 
@@ -28,27 +30,35 @@ public class RegisterService {
          * 2 = succes registration
          */
 
-        // Check user_id in users tables
-        List<User> user_validation = userServiceImpl.FindByUserId(user_id);
+        // Check user_id in users table
+        User user = userServiceImpl.FindByUserId(user_id);
+        List<User> user_list = new ArrayList<User>();
+        user_list.add(user);
 
-        if (user_validation.get(0) != null) {
+        if (user_list.get(0) != null) {
+            // user_id already in users_table
+            System.out.println("user_id already in users table");
             validate_code = 1;
-            // user_id already in users_tables
-            System.out.println("user_id already in users_tables");
             return validate_code;
         }
 
-        validate_code = 2;
         System.out.println("InsertUser");
-        userServiceImpl.InsertUser(user_id, email, nomor_kartu, nomor_hp);
-        passwordServiceImpl.InsertPassword(user_id, password);
+        boolean result = userServiceImpl.InsertUser(user_id, email, nomor_kartu,
+                nomor_hp);
+        if (result) {
+            // insert data to passwords table
+            user = userServiceImpl.FindByUserId(user_id);
+            passwordServiceImpl.InsertPassword(user, password);
+            validate_code = 2;
+            return validate_code;
+        }
         return validate_code;
     }
 
     public boolean DeleteAccount(String user_id) {
+        User user = userServiceImpl.FindByUserId(user_id);
+        passwordServiceImpl.DetelePassword(user);
         userServiceImpl.DeteleUser(user_id);
-        passwordServiceImpl.DetelePassword(user_id);
-
         return true;
     }
 
