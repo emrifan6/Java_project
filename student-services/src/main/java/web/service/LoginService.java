@@ -51,8 +51,6 @@ public class LoginService {
         List<Password> pass_list = new ArrayList<Password>();
         user = userServiceImpl.FindByUserId(user_id);
         pass_list.add(passwordServiceImpl.FindByUserId(user));
-        System.out.println("pass_list.get(0).isIslock() = " +
-                pass_list.get(0).isIslock());
         String password_from_db = pass_list.get(0).getPassword().toString();
 
         if (password.equals(password_from_db)) {

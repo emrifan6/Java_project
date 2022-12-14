@@ -45,7 +45,7 @@
   <body>
     <style>
       .pendaftaran-form {
-        width: 340px;
+        width: 800px;
         margin: 50px auto;
         font-size: 15px;
       }
@@ -71,57 +71,92 @@
         font-size: 15px;
         font-weight: bold;
       }
+      .form-group {
+        margin-bottom: 10px;
+      }
     </style>
 
+    <font color="red">${message}</font>
     <div class="pendaftaran-form">
       <form href="/register" method="post">
         <h2 class="text-center">Pendaftaran Akun</h2>
-        <div class="form-group mb-2">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="User ID"
-            required="required"
-            name="user_id"
-          />
+        <div class="form-group row">
+          <label for="inputUserId" class="col-sm-2 col-form-label"
+            >User ID</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="inputUserId"
+              placeholder="User ID"
+              name="user_id"
+              minlength="8"
+              maxlength="32"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Email"
-            required="required"
-            name="email"
-          />
+        <div class="form-group row">
+          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Email"
+              name="email"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Password"
-            required="required"
-            name="password"
-          />
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >Password</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Password"
+              name="password"
+              minlength="8"
+              maxlength="32"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Nomor Kartu"
-            required="required"
-            name="nomor_kartu"
-          />
+        <div class="form-group row">
+          <label for="inputNomor_kartu" class="col-sm-2 col-form-label"
+            >Nomor kartu</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="number"
+              class="form-control"
+              id="inputNomor_kartu"
+              placeholder="Nomor kartu"
+              name="nomor_kartu"
+              minlength="16"
+              maxlength="16"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Nomor HP"
-            required="required"
-            name="nomor_hp"
-          />
+        <div class="form-group row">
+          <label for="inputNomor_Hp" class="col-sm-2 col-form-label"
+            >Nomor HP</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNomor_Hp"
+              placeholder="Nomor HP"
+              name="nomor_hp"
+              minlength="8"
+              maxlength="13"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
+        <div class="form-group mb-2 text-center">
           <button type="submit" class="btn btn-primary btn-block">
             Daftar
           </button>

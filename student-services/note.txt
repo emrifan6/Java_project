@@ -1,3 +1,59 @@
+15:05 12/12/2022
+User id = min 8, maks 32 (tidak boleh ada spasi/spesial karakter).
+Password = min 8, maks 32 (tidak boleh ada spasi). 
+Validasi harus format email
+Nomor kartu = harus 16
+Nomor hp = min 8, maks 13
+ Task
+ Setelah login fetching data untuk mendapatkan api data kurs
+ https://currencyfreaks.com/documentation.html
+
+https://api.currencyfreaks.com/latest?apikey=0abf921b92e4411985fcd40aff5d5284&symbols=PKR,GBP,EUR,USD
+**Buat apikey sendiri
+
+*Format angka 2 digit dibelakan koma
+ex 2.8432 = 2.84
+
+https://bushansirgur.in/spring-mvc-pass-data-from-controller-to-view/
+https://www.tutorialspoint.com/spring_boot/index.htm
+
+ @RequestMapping(value = "/kurs", method = RequestMethod.GET)
+    public String showLoginPage(ModelMap model) {
+        System.out.println();
+        System.out.println();
+        System.out.println("Test Kurs API");
+        HttpResponse<JsonNode> response = Unirest.get(
+                "https://api.currencyfreaks.com/latest?apikey=4ec647aa8ffd42ed98711c52c95896b7&symbols=PKR,GBP,EUR,USD")
+                .asJson();
+        // {"date":"2022-12-12
+        //
+        // 00:05:00+00","base":"USD","rates":{"PKR":"224.77000000000078","GBP":"0.8171","EUR":"0.9504","USD":"1.0"}}
+        System.out.println("response = " +
+                response.getBody().getClass().getSimpleName());
+        JSONObject myObj = response.getBody().getObject();
+        System.out.println(myObj);
+        System.out.println(myObj.keySet());
+        System.out.println(myObj.length());
+        System.out.println(myObj.getJSONObject("rates").length());
+        System.out.println("date = " + myObj.get("date"));
+        System.out.println("rates = " + myObj.getJSONObject("rates"));
+        System.out.println("PKR = " + myObj.getJSONObject("rates").get("PKR"));
+
+        System.out.println();
+        System.out.println();
+
+        model.put("kurs", myObj);
+        model.put("rates", myObj.getJSONObject("rates"));
+        String[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
+        model.put("cars", cars);
+        model.put("rates_length", myObj.getJSONObject("rates").length());
+        return "kurs";
+    }
+ 
+            // <th scope="col">First</th>
+            // <th scope="col">Last</th>
+            // <th scope="col">Handle</th>
+
   // tabel user (id, email, user_id, nomor_kartu, nomor_hp, created_date,
 // modified_date, statususer_id)
 

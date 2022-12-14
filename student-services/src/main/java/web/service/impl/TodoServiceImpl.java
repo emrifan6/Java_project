@@ -42,4 +42,7 @@ public class TodoServiceImpl {
         return true;
     }
 
+    public List<Todo> ListTodoByUser(User user_id) {
+        return (List<Todo>) todoRepository.findByUserid(user_id);
+    }
 }

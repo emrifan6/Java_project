@@ -9,12 +9,21 @@
       <label for="user_id">user_id:</label>
       <input type="user_id" name="user_id" />
       <br /><br />
+      <label for="email">email:</label>
+      <input type="email" name="email" />
+      <br /><br />
       <label for="password">password:</label>
       <input type="password" name="password" />
       <br /><br />
-      <button type="submit">Login</button>
+      <label for="nomor_kartu">nomor_kartu:</label>
+      <input type="nomor_kartu" name="nomor_kartu" />
+      <br /><br />
+      <label for="nomor_hp">nomor_hp:</label>
+      <input type="nomor_hp" name="nomor_hp" />
+      <br /><br />
+      <button type="submit">Register</button>
     </form>
-   <a href="/register">Register</a></span>
+    <a href="/login">Login</a></span>
   </body>
 </html> -->
 
@@ -35,20 +44,20 @@
   </head>
   <body>
     <style>
-      .login-form {
-        width: 340px;
+      .pendaftaran-form {
+        width: 800px;
         margin: 50px auto;
         font-size: 15px;
       }
 
-      .login-form form {
+      .pendaftaran-form form {
         margin-bottom: 15px;
         background: #f7f7f7;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         padding: 30px;
       }
 
-      .login-form h2 {
+      .pendaftaran-form h2 {
         margin: 0 0 15px;
       }
 
@@ -62,34 +71,53 @@
         font-size: 15px;
         font-weight: bold;
       }
+      .form-group {
+        margin-bottom: 10px;
+      }
     </style>
-    <div class="login-form">
-      <form href="/login" method="post">
-        <h2 class="text-center">Masuk</h2>
-        <div class="form-group mb-2">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="USER ID"
-            required="required"
-            name="user_id"
-          />
+
+    <font color="red">${message}</font>
+    <div class="pendaftaran-form">
+      <form href="/register" method="post">
+        <h2 class="text-center">Pendaftaran Akun</h2>
+        <div class="form-group row">
+          <label for="inputUserId" class="col-sm-2 col-form-label"
+            >User ID</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="inputUserId"
+              placeholder="User ID"
+              name="user_id"
+              minlength="8"
+              maxlength="32"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Password"
-            required="required"
-            name="password"
-          />
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >Password</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Password"
+              name="password"
+              minlength="8"
+              maxlength="32"
+            />
+          </div>
         </div>
-        <div class="form-group mb-2">
+        <div class="form-group mb-2 text-center">
           <button type="submit" class="btn btn-primary btn-block">Masuk</button>
         </div>
       </form>
       <p class="text-center">
-        <a href="register">Pendaftaran akun baru</a>
+        <a href="/register">Pendaftaran</a>
       </p>
     </div>
 
