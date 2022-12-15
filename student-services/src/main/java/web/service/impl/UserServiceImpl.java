@@ -6,7 +6,6 @@ import web.model.entities.User;
 import web.repos.UserRepository;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

@@ -69,7 +69,7 @@ public class RegisterController {
         if (validate_code == 2) {
             model.put("message", myAppProperties.getSucces_registration());
         }
-        return "login";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/delete_user", method = RequestMethod.POST)

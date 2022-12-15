@@ -7,7 +7,6 @@ import web.model.entities.User;
 import web.repos.PasswordRepository;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,19 +22,19 @@ public class PasswordServiceImpl {
 
     public Password FindByUserId(User user_id) {
         System.out.println("FindByUserId");
-        Password data = passwordRepository.findByUserid(user_id);
-        System.out.println("FindByUserId FINISH");
+        Password data = passwordRepository.findByIduser(user_id);
+        System.out.println("findByIduser FINISH");
         return data;
     }
 
     public void UpdateRetry(int retry, User user_id) {
-        Password password = passwordRepository.findByUserid(user_id);
+        Password password = passwordRepository.findByIduser(user_id);
         password.setRetry(retry);
         passwordRepository.save(password);
     }
 
     public boolean UpdateLastLogin(User user_id) {
-        Password password = passwordRepository.findByUserid(user_id);
+        Password password = passwordRepository.findByIduser(user_id);
         Date date = new Date();
         Timestamp date_now = new Timestamp(date.getTime());
         password.setLastlogindate(date_now);
@@ -47,7 +46,7 @@ public class PasswordServiceImpl {
     }
 
     public boolean UpdateIslock(boolean status, User user_id) {
-        Password password = passwordRepository.findByUserid(user_id);
+        Password password = passwordRepository.findByIduser(user_id);
         if (password == null) {
             return false;
         }
@@ -85,7 +84,7 @@ public class PasswordServiceImpl {
     }
 
     public boolean DetelePassword(User user_id) {
-        Password password = passwordRepository.findByUserid(user_id);
+        Password password = passwordRepository.findByIduser(user_id);
         try {
             passwordRepository.delete(password);
         } catch (Exception e) {

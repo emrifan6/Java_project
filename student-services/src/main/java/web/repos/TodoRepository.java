@@ -8,5 +8,5 @@ import web.model.entities.User;
 
 @Repository
 public interface TodoRepository extends CrudRepository<Todo, Long> {
-    Todo findByUserid(User user_id);
+    Todo findByIduser(User iduser);
 }

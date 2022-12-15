@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import web.model.entities.Todo;
 import web.model.entities.User;
 import web.service.impl.TodoServiceImpl;
 import web.service.impl.UserServiceImpl;
@@ -50,17 +49,4 @@ public class TodoService {
         return false;
     }
 
-    // public List<Todo> ListTodoByUser(String user_id) {
-    // // Check user_id in users table
-    // User user = (User) userServiceImpl.FindByUserId(user_id);
-    // List<User> user_list = new ArrayList<User>();
-    // user_list.add(user);
-
-    // if (user_list.get(0) == null) {
-    // // user_id not not found in users_table
-    // System.out.println("user_id not not found in users_table");
-    // return false;
-    // }
-    // return null;
-    // }
 }

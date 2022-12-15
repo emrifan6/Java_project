@@ -26,8 +26,8 @@ public class Password {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "userid", referencedColumnName = "userid")
-    private User userid;
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    private User iduser;
 
     private String password;
 
@@ -47,7 +47,7 @@ public class Password {
     @Override
     public String toString() {
         return "userData{" +
-                "userid=" + userid +
+                "iduser=" + iduser +
                 ", password='" + password + '\'' +
                 ", createddate='" + createddate + '\'' +
                 ", updateddate='" + updateddate + '\'' +

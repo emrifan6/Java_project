@@ -21,8 +21,8 @@ public class TodoServiceImpl {
 
     public Todo FindByUserId(User user_id) {
         System.out.println("FindByUserId");
-        Todo data = todoRepository.findByUserid(user_id);
-        System.out.println("FindByUserId FINISH");
+        Todo data = todoRepository.findByIduser(user_id);
+        System.out.println("findByIduser FINISH");
         return data;
     }
 
@@ -43,6 +43,6 @@ public class TodoServiceImpl {
     }
 
     public List<Todo> ListTodoByUser(User user_id) {
-        return (List<Todo>) todoRepository.findByUserid(user_id);
+        return (List<Todo>) todoRepository.findByIduser(user_id);
     }
 }

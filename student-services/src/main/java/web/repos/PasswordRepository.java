@@ -8,5 +8,5 @@ import web.model.entities.User;
 
 @Repository
 public interface PasswordRepository extends CrudRepository<Password, Long> {
-    Password findByUserid(User user_id);
+    Password findByIduser(User iduser);
 }

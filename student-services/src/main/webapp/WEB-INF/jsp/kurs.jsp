@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,26 +54,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>PKR</td>
-              <td>${pkr}</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>GBP</td>
-              <td>${gbp}</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>EUR</td>
-              <td>${eur}</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>USD</td>
-              <td>${usd}</td>
-            </tr>
+            <c:forEach var = "i" begin = "0" end = "2">
+              <tr>
+                <th scope="row">${i}</th>
+                <td>${data_key[i]}</td>
+                <td>${data_kurs[i]}</td>
+              </tr>
+         </c:forEach> 
           </tbody>
         </table>
       </div>
